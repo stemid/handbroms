@@ -4,7 +4,7 @@ Bash script that runs HandBrakeCLI in parallel to process multiple files from MK
 
 Requires Bash >= 4.3 for the ``wait -n`` feature.
 
-**Observe:** Only supports MKV for now. Will add more filetypes as I go through my media library. I made this to convert files for use with [https://github.com/dularion/streama](Streama).
+**Observe:** Only supports MKV for now. Will add more filetypes as I go through my media library. I made this to convert files for use with [Streama](https://github.com/dularion/streama).
 
 ## Usage
 
