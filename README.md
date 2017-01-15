@@ -1,3 +1,9 @@
+# Handbroms
+
+Bash script that runs HandBrakeCLI in parallel to process multiple files from MKV to MP4 for HTML5 video.
+
+Requires Bash >= 4.3 for the ``wait -n`` feature.
+
 # Install HandBrakeCLI on Fedora/CentOS
 
 ## Dependencies
