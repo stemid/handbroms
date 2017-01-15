@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ${BASH_VERSION:0:3} != "4.3" ]; then
+if ! (( BASH_VERSINFO[0] > 4 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 )); then
     echo "Must use Bash v4.3 for background job processing (wait -n)" 1>&2
     exit 1
 fi
