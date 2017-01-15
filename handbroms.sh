@@ -76,7 +76,7 @@ process_file() {
         pid=$BASHPID
         local_log="$basedir/handbrake.$pid.log"
 
-        echo "$(date): Starting HandBrakeCLI for $file [$$]"
+        echo "$(date): Starting HandBrakeCLI for $file [$pid]"
         $hbcmd -i "$file" -o "$basedir/$new_file" --encoder x264  --optimize $srtarg &> "$local_log"
 
         if [ $? -eq 0 ]; then
