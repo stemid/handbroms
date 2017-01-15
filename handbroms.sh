@@ -73,7 +73,7 @@ process_file() {
             srtarg=''
         fi
 
-        pid=$$
+        pid=$BASHPID
         local_log="$basedir/handbrake.$pid.log"
 
         echo "$(date): Starting HandBrakeCLI for $file [$$]"
