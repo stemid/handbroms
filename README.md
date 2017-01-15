@@ -8,8 +8,14 @@ Requires Bash >= 4.3 for the ``wait -n`` feature.
 
 ## Usage
 
+Will recursively convert directories, or single files.
+
 	$ handbroms.sh dir/
 	$ handbroms.sh file.mkv
+
+Set ``max_proc_count`` at the top of the file for more parallel processes.
+
+**Note:** I believe HandBrakeCLI already is multithreaded.
 
 ## Subtitles
 

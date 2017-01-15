@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # by Stefan Midjich <swehack [at] gmail.com> - 2017
 
+proc_count=0
+max_proc_count=4
+
 if ! (( BASH_VERSINFO[0] > 4 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 )); then
     echo "Must use Bash v4.3 for background job processing (wait -n)" 1>&2
     exit 1
@@ -13,9 +16,6 @@ test $h_rc -ne 0 && exit $h_rc
 etcmd=$(which "exiftool")
 e_rc=$?
 test $e_rc -ne 0 && exit $e_rc
-
-proc_count=0
-max_proc_count=4
 
 strip_space() {
     str="$1"
