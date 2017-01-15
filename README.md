@@ -27,7 +27,7 @@ Will merge video and subtitles as long as name is the same, for example; video1.
 
 Install build-deps for HandBrakeCLI and mediainfo.
 
-  $ sudo dnf install opus-devel libxml2-devel jansson-devel libvorbis-devel \
+	$ sudo dnf install opus-devel libxml2-devel jansson-devel libvorbis-devel \
 		libass-devel libsamplerate-devel libtheora-devel bzip2-devel gmake
 
 ### Fedora libmp3lame
