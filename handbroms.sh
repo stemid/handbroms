@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# by Stefan Midjich <swehack [at] gmail.com> - 2017
 
 if ! (( BASH_VERSINFO[0] > 4 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 )); then
     echo "Must use Bash v4.3 for background job processing (wait -n)" 1>&2

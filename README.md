@@ -4,6 +4,17 @@ Bash script that runs HandBrakeCLI in parallel to process multiple files from MK
 
 Requires Bash >= 4.3 for the ``wait -n`` feature.
 
+**Observe:** Only supports MKV for now. Will add more filetypes as I go through my media library. I made this to convert files for use with [https://github.com/dularion/streama](Streama).
+
+## Usage
+
+	$ handbroms.sh dir/
+	$ handbroms.sh file.mkv
+
+## Subtitles
+
+Will merge video and subtitles as long as name is the same, for example; video1.mkv and video1.srt will be combined with HandBrakeCLI ``--srt-file`` argument.
+
 # Install HandBrakeCLI on Fedora/CentOS
 
 ## Dependencies
