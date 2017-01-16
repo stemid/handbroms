@@ -105,7 +105,7 @@ process_file() {
         pid=$BASHPID
         local_log="$basedir/handbrake.$pid.log"
 
-        echo "$(date): Starting HandBrakeCLI for $file [$pid]"
+        echo "$(date +'%Y-%m-%d.%H:%M:%S')[$pid]: $hbcmd ${hb_args[@]}"
         $hbcmd "${hb_args[@]}" &> "$local_log"
 
         if [ $? -eq 0 ]; then
