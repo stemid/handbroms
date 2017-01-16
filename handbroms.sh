@@ -85,16 +85,28 @@ process_file() {
         new_file=$_filename.mp4
         srtfile="$basedir/$_filename.srt"
 
-        srtarg="--subtitle-lang-list $subtitle_languages --all-subtitles "
+        hb_args=(
+            '-i'
+            "$file"
+            '-o'
+            "$basedir/$new_file"
+            '--encoder'
+            'x264'
+            '--optimize'
+            '--subtitle-lang-list'
+            "$subtitle_languages"
+            '--all-subtitles'
+        )
+
         if [ -f "$srtfile" ]; then
-            srtarg+="--srt-file \"$srtfile\""
+            hb_args+=('--srt-file' "$srtfile")
         fi
 
         pid=$BASHPID
         local_log="$basedir/handbrake.$pid.log"
 
         echo "$(date): Starting HandBrakeCLI for $file [$pid]"
-        $hbcmd -i "$file" -o "$basedir/$new_file" --encoder x264  --optimize $srtarg &> "$local_log"
+        $hbcmd "${hb_args[@]}" &> "$local_log"
 
         if [ $? -eq 0 ]; then
             mv "$local_log" "$local_log.done"
