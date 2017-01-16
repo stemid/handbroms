@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 # by Stefan Midjich <swehack [at] gmail.com> - 2017
 
-proc_count=0
+# These values could be changed by users
+#
+# Max number of HandBrakeCLI processes to run simultaneously.
 max_proc_count=4
+#
+# Subtitle languages to save when converting files with subtitles.
+subtitle_languages=swe,dan,eng,hrv,nno
+#
+#######################################
 
+# Reset proc_count to 0 before starting processes
+proc_count=0
+
+# Ensure we're using Bash >= 4.3
 if ! (( BASH_VERSINFO[0] > 4 || BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 3 )); then
     echo "Must use Bash v4.3 for background job processing (wait -n)" 1>&2
     exit 1
 fi
 
+# Find relevant commands
 hbcmd=$(which "HandBrakeCLI")
 h_rc=$?
 test $h_rc -ne 0 && exit $h_rc
@@ -17,6 +29,7 @@ etcmd=$(which "exiftool")
 e_rc=$?
 test $e_rc -ne 0 && exit $e_rc
 
+# Strip spaces
 strip_space() {
     str="$1"
 
@@ -26,6 +39,8 @@ strip_space() {
     echo $_str
 }
 
+# Get number of audiochannels, might be useful later but for now HandBrakeCLI
+# seems to handle it.
 get_audiochannels() {
     file=$1
 
@@ -41,6 +56,7 @@ get_audiochannels() {
     fi
 }
 
+# Useful to know which types of files to convert.
 get_filetype() {
     file=$1
 
@@ -56,6 +72,7 @@ get_filetype() {
     fi
 }
 
+# Process a single file.
 process_file() {
     file=$1 && shift
 
@@ -68,10 +85,9 @@ process_file() {
         new_file=$_filename.mp4
         srtfile="$basedir/$_filename.srt"
 
+        srtarg="--subtitle-lang-list $subtitle_languages --all-subtitles "
         if [ -f "$srtfile" ]; then
-            srtarg="--srt-file \"$srtfile\""
-        else
-            srtarg=''
+            srtarg+="--srt-file \"$srtfile\""
         fi
 
         pid=$BASHPID
@@ -86,6 +102,7 @@ process_file() {
     fi
 }
 
+# Recursively process a directory
 walk_dir() {
     dir=$1
 
