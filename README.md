@@ -1,5 +1,7 @@
 # Handbroms
 
+**Note**: It didn't take me long to abandon the Streama project, partly because it required me to do things like this script. I now use [Emby](https://emby.media) and I'd happily pay for the feature to automagically convert my media library on-the-fly. This script is still a funny example of the fairly recent multithreading in bash. :)
+
 Bash script that runs HandBrakeCLI in parallel to process multiple files from MKV to MP4 for HTML5 video.
 
 Requires Bash >= 4.3 for the ``wait -n`` feature.
